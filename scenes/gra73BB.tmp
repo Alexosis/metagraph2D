@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3iqha2thse4u"]
+
+[ext_resource type="Script" path="res://scripts/graph_view.gd" id="1_7mecs"]
+[ext_resource type="PackedScene" uid="uid://cjmqk3apg4d4q" path="res://scenes/node_view.tscn" id="2_7m57a"]
+
+[node name="GraphView" type="Node2D"]
+script = ExtResource("1_7mecs")
+graph_node_scene = ExtResource("2_7m57a")
+
+[node name="NodeView" parent="." instance=ExtResource("2_7m57a")]

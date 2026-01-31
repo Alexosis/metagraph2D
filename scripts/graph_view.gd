@@ -4,7 +4,7 @@ var graph: Graph_Data
 
 @export var run_layout := true
 
-var layout := ForceAtlasLayout.new()
+var layout := ForceAtlas2Layout.new()
 var running := false
 
 func _draw():
@@ -12,8 +12,8 @@ func _draw():
 		return
 
 	for edge in graph.edges:
-		var from_pos = graph.nodes[edge[0]].pos
-		var to_pos = graph.nodes[edge[1]].pos
+		var from_pos = graph.nodes[edge["from"]].pos
+		var to_pos = graph.nodes[edge["to"]].pos
 		draw_line(from_pos, to_pos, Color.WHITE, 2.0)
 
 @export var graph_node_scene: PackedScene
@@ -42,10 +42,15 @@ func _ready():
 	graph.nodes[1] = { "pos": Vector2(400, 300), "data": "B" }
 	graph.nodes[2] = { "pos": Vector2(300, 100), "data": "C" }
 	graph.edges = [
-		#[1, 2],
-		[1, 2],
-		[2, 0]
+		{"from": 0, "to": 1, "weight": 1.0},
+		{"from": 1, "to": 2, "weight": 3.0}
 	]
+	
+	#graph.edges = [
+		#[1, 2],
+		#[1, 2],
+		#[2, 0]
+	#]
 	layout.reset(graph.nodes)
 	running = run_layout
 	build_graph()

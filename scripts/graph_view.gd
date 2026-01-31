@@ -4,7 +4,7 @@ var graph: Graph_Data
 
 @export var run_layout := true
 
-var layout := ForceAtlas2Layout.new()
+var layout := ForcePlanetaryLayout.new()
 var running := false
 
 func _draw():

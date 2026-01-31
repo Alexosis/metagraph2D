@@ -1,20 +1,20 @@
 extends RefCounted
 class_name ForceAtlas2Layout
 
-var repulsion_strength := 200.0
-var edge_weight_multiplier := 100.0
+var repulsion_strength := 100000000.0
+var edge_weight_multiplier := 2.0
 var attraction_strength := 0.01
 var damping := 0.85
 var max_speed := 500.0
 
 var velocities := {} # id -> Vector2
 
-func _build_edge_manp(edges: Array) -> Dictionary:
+func _build_edge_manp(edges: Array, nodes: Dictionary) -> Dictionary:
 	var map:= {}
 	for edge in edges:
 		var a: int = edge["from"]
 		var b: int = edge["to"]
-		var w: float = edge["weight"]
+		var w: float = nodes[edge["from"]]["weight"] * nodes[edge["to"]]["weight"]
 		
 		map[a] = map.get(a, [])
 		map[a].append({ "to": b, "weight": w })
@@ -30,7 +30,7 @@ func reset(nodes: Dictionary):
 
 func step(nodes: Dictionary, edges: Array, delta: float) -> Dictionary:
 	
-	var edge_map := _build_edge_manp(edges)
+	var edge_map := _build_edge_manp(edges, nodes)
 	
 	# --- REPULSION ---
 	for id_a in nodes.keys():

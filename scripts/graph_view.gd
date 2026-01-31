@@ -38,12 +38,12 @@ func build_graph():
 func _ready():
 	graph = Graph_Data.new()
 	
-	graph.nodes[0] = { "pos": Vector2(200, 200), "data": "A" }
-	graph.nodes[1] = { "pos": Vector2(400, 300), "data": "B" }
-	graph.nodes[2] = { "pos": Vector2(300, 100), "data": "C" }
+	graph.nodes[0] = { "pos": Vector2(501, 500), "data": "A", "weight": 1.0 }
+	graph.nodes[1] = { "pos": Vector2(500, 500), "data": "B", "weight": 2.0 }
+	graph.nodes[2] = { "pos": Vector2(500, 501), "data": "C", "weight": 20.0 }
 	graph.edges = [
-		{"from": 0, "to": 1, "weight": 1.0},
-		{"from": 1, "to": 2, "weight": 3.0}
+		{"from": 0, "to": 1},
+		{"from": 1, "to": 2}
 	]
 	
 	#graph.edges = [
